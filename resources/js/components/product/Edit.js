@@ -46,6 +46,7 @@ class Edit extends Component
 	{
 		e.preventDefault()
 		var formData = new FormData();
+		formData.append('id', this.state.id);
 		formData.append('image', this.fileHolder);
 		formData.append('name', this.state.name);
 
@@ -53,16 +54,20 @@ class Edit extends Component
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-        }).then(response => {
-				this.props.updateState(data, 1);
+        })
+			.then(response => {
+				this.props.updateState(formData, 1);
 				this.setState(this.baseState);
+				console.log(response);
+
 				document.getElementById("closeEditModal").click();
 				toastr.info('User data updated successfully!', {position : 'top-right', heading: 'Done'});
 			})
 			.catch(error => {
-				this.setState({
-					errors : error.response.data.errors
-				})
+					this.setState({
+						errors : error.response.data.errors
+					})
+				
 			})
 	}
     //--- Check that any validation errors occure for input field ---//

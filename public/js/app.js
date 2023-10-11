@@ -70467,6 +70467,7 @@ function (_Component) {
 
       e.preventDefault();
       var formData = new FormData();
+      formData.append('id', this.state.id);
       formData.append('image', this.fileHolder);
       formData.append('name', this.state.name);
       axios.post("/api/products/".concat(this.state.id), formData, {
@@ -70474,10 +70475,11 @@ function (_Component) {
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        _this2.props.updateState(data, 1);
+        _this2.props.updateState(formData, 1);
 
         _this2.setState(_this2.baseState);
 
+        console.log(response);
         document.getElementById("closeEditModal").click();
         cogo_toast__WEBPACK_IMPORTED_MODULE_1__["default"].info('User data updated successfully!', {
           position: 'top-right',
@@ -71378,8 +71380,8 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/momen/Projects/laravel-react/react-crud-with-laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/momen/Projects/laravel-react/react-crud-with-laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/momen/Projects/laravel-react/laravel-react/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/momen/Projects/laravel-react/laravel-react/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
