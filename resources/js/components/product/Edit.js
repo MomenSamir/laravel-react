@@ -56,12 +56,10 @@ class Edit extends Component
             },
         })
 			.then(response => {
-				this.props.updateState(formData, 1);
+				this.props.updateState(response.data, 1);
 				this.setState(this.baseState);
-				console.log(response);
-
 				document.getElementById("closeEditModal").click();
-				toastr.info('User data updated successfully!', {position : 'top-right', heading: 'Done'});
+				toastr.info('Product data updated successfully!', {position : 'top-right', heading: 'Done'});
 			})
 			.catch(error => {
 					this.setState({

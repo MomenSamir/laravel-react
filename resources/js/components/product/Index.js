@@ -30,6 +30,7 @@ class Index extends Component
 	//--- Update state variable while any user insert or update ---//
 	handleUpdateState(data, operation)
 	{
+		console.log(data);
 		//--- 'operation==1' means update user ---//
 		if(operation === 1) {
 			this.setState(prevState => ({
@@ -49,7 +50,7 @@ class Index extends Component
 		})
 	}
 	//--- Find editable user and update state variable ---//
-	handleEditUser(productId)
+	handleEditProduct(productId)
 	{
 		axios.get(`/api/products/${productId}/edit`)
 			.then(response => {
@@ -59,7 +60,7 @@ class Index extends Component
 			})
 	}
 	//--- Delete user and update state ---//
-	handleDeleteUser(productId)
+	handleDeleteProduct(productId)
 	{
 		axios.delete(`/api/products/${productId}`)
 			.then(response => {
@@ -96,10 +97,10 @@ class Index extends Component
                                 <tr key={i}>
                                     <td> {product.id} </td>
                                     <td> {product.name} </td>
-                                    <td> <img src={"images/"+product.image} ></img> </td>
+                                    <td > <img src={"images/"+product.image} class={product.name} ></img> </td>
                                     <td>
-                                        <button className="btn btn-secondary btn-sm mr-2" onClick={this.handleEditUser.bind(this, product.id)} data-toggle="modal" data-target="#editModal"> Edit </button>
-                                        <button className="btn btn-danger btn-sm" onClick={this.handleDeleteUser.bind(this, product.id)}> Delete </button>
+                                        <button className="btn btn-secondary btn-sm mr-2" onClick={this.handleEditProduct.bind(this, product.id)} data-toggle="modal" data-target="#editModal"> Edit </button>
+                                        <button className="btn btn-danger btn-sm" onClick={this.handleDeleteProduct.bind(this, product.id)}> Delete </button>
                                     </td>
                                 </tr>
                             ))}

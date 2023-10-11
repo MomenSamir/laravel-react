@@ -94,8 +94,7 @@ class ProductController extends Controller
             $product->image = $myImage;
         }
         $product->save();
-
-        return response()->json('success');
+        return $product->toJson();
     }
 
     /**

@@ -64474,7 +64474,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70475,13 +70475,12 @@ function (_Component) {
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        _this2.props.updateState(formData, 1);
+        _this2.props.updateState(response.data, 1);
 
         _this2.setState(_this2.baseState);
 
-        console.log(response);
         document.getElementById("closeEditModal").click();
-        cogo_toast__WEBPACK_IMPORTED_MODULE_1__["default"].info('User data updated successfully!', {
+        cogo_toast__WEBPACK_IMPORTED_MODULE_1__["default"].info('Product data updated successfully!', {
           position: 'top-right',
           heading: 'Done'
         });
@@ -70660,7 +70659,8 @@ function (_Component) {
   }, {
     key: "handleUpdateState",
     value: function handleUpdateState(data, operation) {
-      //--- 'operation==1' means update user ---//
+      console.log(data); //--- 'operation==1' means update user ---//
+
       if (operation === 1) {
         this.setState(function (prevState) {
           return {
@@ -70680,8 +70680,8 @@ function (_Component) {
     } //--- Find editable user and update state variable ---//
 
   }, {
-    key: "handleEditUser",
-    value: function handleEditUser(productId) {
+    key: "handleEditProduct",
+    value: function handleEditProduct(productId) {
       var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api/products/".concat(productId, "/edit")).then(function (response) {
@@ -70692,8 +70692,8 @@ function (_Component) {
     } //--- Delete user and update state ---//
 
   }, {
-    key: "handleDeleteUser",
-    value: function handleDeleteUser(productId) {
+    key: "handleDeleteProduct",
+    value: function handleDeleteProduct(productId) {
       var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_4___default.a["delete"]("/api/products/".concat(productId)).then(function (response) {
@@ -70737,15 +70737,16 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: i
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", product.id, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", product.name, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: "images/" + product.image
+          src: "images/" + product.image,
+          "class": product.name
         }), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-secondary btn-sm mr-2",
-          onClick: _this5.handleEditUser.bind(_this5, product.id),
+          onClick: _this5.handleEditProduct.bind(_this5, product.id),
           "data-toggle": "modal",
           "data-target": "#editModal"
         }, " Edit "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-danger btn-sm",
-          onClick: _this5.handleDeleteUser.bind(_this5, product.id)
+          onClick: _this5.handleDeleteProduct.bind(_this5, product.id)
         }, " Delete ")));
       }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Create__WEBPACK_IMPORTED_MODULE_2__["default"], {
         updateState: this.handleUpdateState
